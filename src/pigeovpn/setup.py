@@ -31,8 +31,10 @@ def setup_credentials(username: str, password: str) -> None:
     """
     sudo_command = ' '.join([
         'sudo',
-        f'echo {username} > {CREDS_FILE}',
-        f'echo {password} >> {CREDS_FILE}',
+        'sh',
+        '-c',
+        f'\'echo "{username}\'\n\'{password}" > {CREDS_FILE}\'',
+        'sudo',
         f'chmod 600 {CREDS_FILE}'
         ])
 
