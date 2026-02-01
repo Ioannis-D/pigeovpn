@@ -65,6 +65,9 @@ The app will try to open whichever terminal in the list is installed, and execut
 
 
 ## FAQs
+### I insert my sudo password but I get a 'AUTH verification' message
+This means that the VPN's credentials are incorrect. Try to re-insert them (by Logging out) or manually create them (/etc/openvpn/credentials2.txt)
+
 ### Why pige.ovpn and how is it pronounced?
 Pige.ovpn takes its name from the bird pigeon, which is how it is pronounced (pigeo - vpn). 
 For the moment, the app only serves OpenVPN connections via the `.ovpn` configurtion files.
@@ -94,6 +97,7 @@ So, at least for the moment, the app is focused on providing a better experience
 
 ## Roadmap
 There are plenty of features I would like to include in the next versions. Some of them are:
+- [ ] Enable autoinput with `tab` for the directory selection.
 - [ ] Include an automatic killswitch.
 - [ ] Include more keybindings (f.e. for the buttons)
 - [ ] Use vim keyrings for the directory tree navigation.
