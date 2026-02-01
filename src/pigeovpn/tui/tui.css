@@ -1,0 +1,319 @@
+/* ------------------------------------------------------------
+   GLOBAL LAYOUT: two columns (50/50), footer docked at bottom
+------------------------------------------------------------ */
+MainScreen {
+    layout: vertical;
+    background: $panel;
+}
+
+/* main-container is the 2-column grid */
+#main-container {
+    layout: grid;
+    grid-size: 2 1;          /* 2 columns, 1 row */
+    grid-columns: 1fr 1fr;   /* 50% / 50% */
+    height: 1fr;
+    overflow: auto;
+}
+
+Footer {
+    dock: bottom;
+    height: 1;
+    background: $surface;
+    text-style: bold;
+}
+
+Button {
+    width: auto;
+}
+
+/* Hide utility */
+.hidden {
+    display: none;
+}
+
+/* ------------------------------------------------------------
+   LEFT PANE: Directory + Search
+------------------------------------------------------------ */
+
+#left-vertical-pane {
+    height: 100%;
+}
+
+/* Directory tree styling inside left pane */
+#dir-pane {
+    height: 1fr;
+    padding: 0 1;
+    border: round $surface;
+    layout: vertical;
+}
+
+#tree-view {
+    margin: 1 1 0 1;
+    overflow: auto;
+}
+
+/* Search bar (hidden by default via .hidden) */
+#search {
+    height: 3;
+    width: 90%;
+    margin: 1 1 1 1;
+    padding: 0 1;
+    border: round $accent;
+    background: $boost;
+    align-horizontal: center;
+}
+
+#search:focus {
+    border: round $accent-lighten-1;
+}
+
+/* ------------------------------------------------------------
+   RIGHT PANE: Info placeholder
+------------------------------------------------------------ */
+/* Right column container (ASCII + bottom-info) */
+#right-pane {
+    align: center middle;
+}
+
+#app-title-wrapper {
+    height: auto;
+    width: auto;
+    min-height: 1;
+    align: center middle;
+}
+
+/* ASCII art: visible and centered at the top */
+#app-title {
+    height: auto;
+    width: 1fr;
+    align: center middle;
+    text-align: center;
+}
+
+/* Bottom block: fills remaining space and keeps its children at the bottom */
+#bottom-info {
+    layout: vertical;
+    height: 1fr;
+    align-vertical: bottom;
+    padding: 1 2;
+    border: round $surface;
+}
+
+#bottom-button-area {
+    height: 3;
+    align: center bottom;
+    margin: 3 0 0 0;
+}
+
+#button-shutdown-container {
+    align: center middle;
+}
+
+#button-shutdown {
+    width: 80%;
+}
+
+#button-logout-container {
+    align: center middle;
+}
+
+#button-change-directory-container {
+    align: center middle;
+}
+
+#button-change-directory {
+    width: 80%;
+}
+
+#button-logout {
+    width: 80%;
+}
+
+#button-github-container {
+    align: right middle;
+}
+
+#button-github {
+    border: none;
+}
+
+/* Selected file text */
+#info-pane {
+    padding: 0 0 1 0;
+    overflow: auto;
+    content-align: center middle;
+    text-align: center;
+}
+
+/* IP row (IP info + button) */
+#ip-info-pane {
+    layout: horizontal;
+    min-height: 3;
+    padding: 0 1;
+}
+
+#ip-pane {
+    width: 1fr;
+}
+
+/* Graphs */
+#net-usage {
+    padding: 0 0;
+    height: auto;
+}
+
+#upload-spark, #download-spark {
+    height: 2;
+}
+
+#download-spark > .sparkline--max-color {
+    color: $success 50%;
+}
+
+
+/* ------------------------------------------------------------
+   Directory Input Screen (to insert the ovpn files' directory)
+------------------------------------------------------------ */
+DirectoryInsertScreen {
+    align: center middle;
+}
+
+#directoryask_screen {
+    grid-size: 1 3;
+    grid-gutter: 0;
+    grid-rows: 1fr 1fr 3;
+    padding: 1 1;
+    width: 40;
+    height: 15;
+    background: $surface;
+}
+
+#ovpnDirectory-label {
+    width: 1fr;
+    height: 1fr;
+    content-align: center middle;
+    text-align: center;
+}
+
+#ovpnDirectory-button {
+    width: auto;
+    content-align: center middle;
+}
+
+
+/* ------------------------------------------------------------
+   Login Screen (to insert credentials)
+------------------------------------------------------------ */
+LoginCredentialsScreen {
+    align: center middle;
+}
+
+#credentials_screen {
+    grid-size: 1 4;
+    grid-gutter: 0;
+    grid-rows: 1fr 1fr 1fr 3;
+    padding: 1 1;
+    width: 40;
+    height: 15;
+    background: $surface 20%;
+}
+
+#credentials-label {
+    width: 1fr;
+    height: 1fr;
+    content-align: center middle;
+}
+
+#credentials-button {
+    width: auto;
+    content-align: center middle;
+}
+
+/* ------------------------------------------------------------
+   ShutDown Confirmation Screen
+------------------------------------------------------------ */
+ShutDownConfirmScreen{
+    align: center middle;
+}
+
+#shutdown-grid {
+    grid-size: 1 2;
+    grid-gutter: 0;
+    grid-rows: 1fr 2fr;
+    padding: 1 1;
+    width: 60;
+    height: 10;
+    background: $surface 20%;
+}
+
+#button-shutdown-screen {
+    align: center bottom;
+}
+#label-shutdown-screen{
+    width: 1fr;
+    height: 1fr;
+    content-align: center middle;
+    text-align: center;
+}
+
+#cancel-button-shutdown-screen{
+    width: auto;
+    margin: 2 0;
+}
+
+#confirm-button-shutdown-screen{
+    width: auto;
+    margin: 2 0;
+}
+
+/* ------------------------------------------------------------
+   Welcome screen
+------------------------------------------------------------ */
+WelcomeScreen {
+    background: $panel;
+}
+
+#welcomePage-statics-container {
+    padding: 2 2;
+    content-align: center middle;
+    height: 3fr;
+}
+
+#welcomePage-welcomeToAscii {
+    content-align: center middle;
+}
+
+#welcomePage-OpenVPNSelectorAscii {
+    outline-bottom: $accent;
+    content-align: center middle;
+    padding: 0 0 4 0;
+}
+
+#welcomePage-button-container {
+    grid-size: 2 1;
+    width: 100%;
+    align: center middle;
+    height: 1fr;
+}
+
+
+#button-welcomePage-GithubPage {
+    width: 30;
+    background: ansi_black;
+}
+
+#button-welcomePage-continueSetup {
+    width: 30;
+}
+
+#welcomePage-AppInfo-container {
+    width: 100%;
+    outline-bottom: $accent;
+    align-horizontal: center;
+    height: 1fr;
+}
+
+#welcomePage-AppInfo-text {
+    content-align: center middle;
+    text-align: center;
+}

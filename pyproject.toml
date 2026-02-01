@@ -1,0 +1,73 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pigeovpn"
+dynamic = ["version"]
+description = 'A TUI to dynamically select, connect, and monitor OpenVPN configurations on Linux.'
+readme = "README.md"
+requires-python = ">=3.9"
+license = "GPL-3.0"
+license-files = ["LICEN[CS]E*"]
+keywords = ["OpenVPN", "VPN", "CLI", "TUI", "Linux"]
+authors = [
+  { name = "Ioannis Doganos", email = "i.doganos@tutamail.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3.15",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+    "requests",
+    "psutil",
+    "textual>=7.5.0"
+]
+
+[project.scripts]
+pigeovpn = "pigeovpn.tui_app:pigeovpn"
+
+[project.urls]
+Documentation = "https://github.com/Ioannis-D/pigeovpn#readme"
+Issues = "https://github.com/Ioannis-D/pigeovpn/issues"
+Source = "https://github.com/Ioannis-D/pigeovpn"
+
+[tool.hatch.version]
+path = "src/pigeovpn/__about__.py"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/pigeovpn tests}"
+
+[tool.coverage.run]
+source_pkgs = ["pigeovpn", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/pigeovpn/__about__.py",
+]
+
+[tool.coverage.paths]
+pigeovpn = ["src/pigeovpn", "*/pigeovpn/src/pigeovpn"]
+tests = ["tests", "*/pigeovpn/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
