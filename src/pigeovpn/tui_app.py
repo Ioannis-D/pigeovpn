@@ -95,8 +95,7 @@ class PigeovpnApp(App):
     def update_main_screen(self, update: bool | None) -> None:
         """
         This function is used for the DirectoryInsertScreen at which the user gives the directory of the .ovpn files.
-        When a new path is given, we want the DirectoryTree to be immediately updated with the new path.
-        
+        When a new path is given, we want the DirectoryTree to be immediately updated with the new path.       
         To achieve this, we re-install and re-push(or just push when is the first time the app is run) the screen 'MainScreen'. 
         With this way, a 'new' updated screen is added. 
         As 'pop_screen' doesn't accept a specific screen as an attr, for clarity and easiness, we bring the EmptyScreen() on the front of the stack, just to uninstall the 'main' screen.
@@ -117,6 +116,7 @@ class PigeovpnApp(App):
             Push all the screens for the setting setup.
             When a screen is done, pop it or dismiss it.
             """
+            self.push_screen("empty_screen")
             self.push_screen(DirectoryInsertScreen(), self.update_main_screen)
             self.push_screen(LoginCredentialsScreen(show_cancel_button=False))
             self.push_screen(WelcomeScreen(), self.check_pop_screen)
