@@ -1,4 +1,6 @@
-<img src="./images/pigeovpn_logo.png" alt="pigeovpn logo" class="center">
+<p align="center">
+ <img src="./images/pigeovpn_logo.png">
+</p>
 
 # pige.ovpn
 A TUI that makes it easier to connect to VPNs and monitor network usage.
@@ -60,7 +62,7 @@ The UI is divided into two main panels:
 - **Left panel:** shows all `.ovpn` files found in the configured directory.
 - **Right panel:** status, network information, and control panel.
 
-Press `s` to search dynamically through the available configuration files (regex supported).  
+Press `s` to search dynamically through the available configuration files (*regex* supported).  
 [GIF demonstration]
 
 To connect to a VPN, select a file and press `Enter` (or click on it).
