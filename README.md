@@ -144,7 +144,7 @@ There are plenty of features I would like to include in the next versions. Some 
 - [ ] When a new directory is given, update only the directory tree, not the whole screen.
 - [ ] Replace current graph with a line graph.
 
-The list can be amplified based on user's requests.
+The list can be amplified based on users' requests.
 
 ## License
 ![GPLv3 or Greater Logo](https://www.gnu.org/graphics/gplv3-or-later.svg "GNU GPL V3 LOGO")
