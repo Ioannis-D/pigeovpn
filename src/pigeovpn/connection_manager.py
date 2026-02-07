@@ -26,9 +26,7 @@ def fetch_ip_info():
     def get_ip():
         try:
             response = requests.get("https://ipinfo.io/json", timeout=2).json()
-        except requests.exceptions.ConnectTimeout:
-            return False
-        except ReadTimeout:
+        except:
             return False
         else:
             return response["ip"]

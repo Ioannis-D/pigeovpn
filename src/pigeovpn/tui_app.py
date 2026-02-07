@@ -23,6 +23,11 @@ from pigeovpn.tui.welcome import WelcomeScreen
 # -----------------------------------------------------------
 # MainScreen - The main app
 # -----------------------------------------------------------
+class EmptyScreen(Screen):
+    """
+    An empty screen with no widgets or content.
+    Used as the last layer, for facilitating the uninstallation of the MainScreen"""
+    pass
 
 class MainScreen(Screen):
 
@@ -92,19 +97,21 @@ class PigeovpnApp(App):
         This function is used for the DirectoryInsertScreen at which the user gives the directory of the .ovpn files.
         When a new path is given, we want the DirectoryTree to be immediately updated with the new path.
         
-        To achieve this, we re-push (or just push when is the first time the app is run) the screen 'MainScreen'. 
+        To achieve this, we re-install and re-push(or just push when is the first time the app is run) the screen 'MainScreen'. 
         With this way, a 'new' updated screen is added. 
-        As 'pop_screen' doesn't accept a specific screen as an attr, for clarity and easiness of the code, poping the 'old' MainScreen isn't done. 
-        So the 'old' MainScreen is still working on the background.
-        It is assumed that the user will not change directories multiple times in a run, which could create a big stack of MainScreen screens.
-        With this way, we avoid the use of checking if a screen is stacked, and switching between screens to pop the MainScreen that is not updated.
+        As 'pop_screen' doesn't accept a specific screen as an attr, for clarity and easiness, we bring the EmptyScreen() on the front of the stack, just to uninstall the 'main' screen.
         """
         OVPN_FILES_DIR = get_ovpnFilesDir() # Update the path with the new directory provided
 
         if update:
-            self.push_screen(MainScreen(OVPN_FILES_DIR))
+            self.switch_screen("empty_screen")
+            self.uninstall_screen("main") # Uninstall the 'main' screen to re-install it with the new directory.
+            self.install_screen(MainScreen(OVPN_FILES_DIR), name="main")
+            self.push_screen("main")
 
     def on_mount(self) -> None:
+        self.install_screen(EmptyScreen(), name="empty_screen") # For why an empty screen is installed, see the PigeovpnApp.update_main_screen() comment.
+        self.install_screen(MainScreen(), name="main")
         if check_showing_settings(): # The first time the app is run, show the welcome/settings page
             """
             Push all the screens for the setting setup.
@@ -114,7 +121,7 @@ class PigeovpnApp(App):
             self.push_screen(LoginCredentialsScreen(show_cancel_button=False))
             self.push_screen(WelcomeScreen(), self.check_pop_screen)
         else:
-            self.push_screen(MainScreen())
+            self.push_screen("main")
 
 
 def pigeovpn():

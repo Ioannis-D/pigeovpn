@@ -83,13 +83,6 @@ class ButtonShutDown(Button):
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         self.app.push_screen(ShutDownConfirmScreen())
-        #returncode = disconnect_vpn()
-        #if returncode != 0:
-        #    self.notify(
-        #            f"Returncode/error:\n{returncode}",
-        #            title="Couldn't disconnect",
-        #            severity="error"
-        #            )
 
 
 class ButtonGithubPage(Button):
@@ -158,6 +151,15 @@ class ShutDownConfirmScreen(ModalScreen):
                         "OpenVPN has been killed",
                         title="Disconnected"
                         )
+
+                # Update the file selected and the IP info
+                main_screen = self.app.get_screen("main") # Get the main screen
+                # Update the file selected to No selected file
+                info = main_screen.query_one("#info-pane", InfoPane) 
+                info.update("No selected file")
+                # Update the IP address information
+                update_ip_info(main_screen, "#ip-pane", InfoPane)
+
                 self.app.pop_screen()
 
 # -----------------------------------------------------------
