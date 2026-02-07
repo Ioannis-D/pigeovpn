@@ -1,10 +1,11 @@
+![pigeovpn logo](./images/pigeovpn_logo.png "pigeovpn logo")
 # pige.ovpn
 A TUI that makes it easier to connect to VPNs and monitor internet usage.
 
 Made for Linux distros.
 
 ##  Features
-- Connect/Disconnect VPN.
+- Connect/Disconnect to VPN.
 - Show IP info (IP address, city, country).
 - Monitor network usage.
 
@@ -22,11 +23,34 @@ Made for Linux distros.
 - OpenVPN installed on your system.
 
 ## Installation
+#### pipx installation (recommended)
+pige.ovpn is available in PyPy and can be installed via **pipx** by running:
+
+```bash
+pipx install pigeovpn
+```
+
+Launch pige.ovpn with the following:
+
+``` bash
+pigeovpn
+```
+
+You can also use **pip** (`pip install pigeovpn`) but it is <u> highly unrecommended </u> for avoiding dependency issues.
+
+#### GitHub repo clone installation
+If you don't want to use `pipx`, you can download the GitHub repo by running:
+``
+
+Run the program from the repo's directory with:
+```bash
+python3 -m tui_app.py
+```
 
 ## How the app works
 ### First run
 The first time you run the app, you will see the welcome page: 
-[photo of welcome page]
+![Screenshot of welcome page](./images/Welcome_Page.png)
 
 From there, you will have to:
 - Provide your provider's credentials (username and password) which will create the credentials.txt file at [path]  
@@ -65,8 +89,17 @@ The app will try to open whichever terminal in the list is installed, and execut
 
 
 ## FAQs
-### I insert my sudo password but I get a 'AUTH verification' message
-This means that the VPN's credentials are incorrect. Try to re-insert them (by Logging out) or manually create them (/etc/openvpn/credentials2.txt)
+### When I try to connect, I insert my sudo password but I get a 'AUTH verification' error.
+This means that the VPN's credentials are incorrect. Try to re-insert them (by Logging out) or manually create them (/etc/openvpn/credentials.txt)
+
+### I connect to the VPN without errors, but the connection isn't active.
+Probably the VPN's credentials are incorrect. Try to re-insert them (by Logging out) or manually create them (/etc/openvpn/credentials.txt). 
+If the issue continues, please open an Issue.
+
+### The city and/or country are incorrect.
+pige.ovpn tries to use the '' website for IP information. However, if multiple requests are sent in a short period, the '' is used, which free plan isn't as precise. 
+
+In future versions, the option to insert different APIs is to be added.
 
 ### Why pige.ovpn and how is it pronounced?
 Pige.ovpn takes its name from the bird pigeon, which is how it is pronounced (pigeo - vpn). 
@@ -95,7 +128,11 @@ As far as I know, all VPN providers have already their own apps for Windows and 
 
 So, at least for the moment, the app is focused on providing a better experience to those who don't have access to similar apps.
 
-## Roadmap
+## pige.ovpn development
+pige.ovpn is currently under development.
+
+Anyone who is interested in collaborating is more than welcome. Please see [Contributing.md] for more details.
+### Roadmap
 There are plenty of features I would like to include in the next versions. Some of them are:
 - [ ] Enable autoinput with `tab` for the directory selection.
 - [ ] Include an automatic killswitch.
@@ -103,7 +140,11 @@ There are plenty of features I would like to include in the next versions. Some 
 - [ ] Use vim keyrings for the directory tree navigation.
 - [ ] Only select an .ovpn file from the tree directory with double click.
 - [ ] Show loading widget when refresh ip data is pressed.
+- [ ] Include the option of different APIs for IP detection.
 - [ ] When a new directory is given, update only the directory tree, not the whole screen.
 - [ ] Replace current graph with a line graph.
 
-The list can be amplified based on user's requests, and by contributing many more features can be added.
+The list can be amplified based on user's requests.
+
+## License
+![GPLv3 or Greater Logo](https://www.gnu.org/graphics/gplv3-or-later.svg "GNU GPL V3 LOGO")
