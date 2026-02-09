@@ -66,6 +66,7 @@ Press `s` to search dynamically through the available configuration files.
 ![Screen recording of the Search Option](./images/Searching.GIF)
 
 To connect to a VPN, select a file and press `Enter` (or click on it).
+![Screen recording of the Search Option](./images/Connecting.GIF)
 
 By default, IP information is not automatically fetched until a VPN profile is selected.  
 You can manually refresh it at any time by pressing `Refresh IP info`.
