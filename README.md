@@ -62,13 +62,13 @@ The UI is divided into two main panels:
 - **Left panel:** shows all `.ovpn` files found in the configured directory.
 - **Right panel:** status, network information, and control panel.
 
-Press `s` to search dynamically through the available configuration files (*regex* supported).  
-[GIF demonstration]
+Press `s` to search dynamically through the available configuration files.  
+![Screen recording of the Search Option](./images/Searching.GIF)
 
 To connect to a VPN, select a file and press `Enter` (or click on it).
 
 By default, IP information is not automatically fetched until a VPN profile is selected.  
-You can manually refresh it at any time by pressing [key].
+You can manually refresh it at any time by pressing `Refresh IP info`.
 
 Press `q` to exit the app.
 
