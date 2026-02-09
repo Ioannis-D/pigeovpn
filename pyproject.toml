@@ -15,9 +15,6 @@ authors = [
   { name = "Ioannis Doganos", email = "i.doganos@tutamail.com" },
 ]
 
-[tool.setuptools.package-data]
-'src' = ['*.json']
-
 classifiers = [
   "Development Status :: 4 - Beta",
   "Operating System :: POSIX :: Linux",
@@ -35,9 +32,12 @@ classifiers = [
 ]
 dependencies = [
     "requests",
-    "psutil",
+    "psutil>=7.2.0",
     "textual>=7.5.0"
 ]
+
+[tool.setuptools.package-data]
+'src' = ['*.json']
 
 [project.scripts]
 pigeovpn = "pigeovpn.tui_app:pigeovpn"
