@@ -14,6 +14,10 @@ keywords = ["OpenVPN", "VPN", "CLI", "TUI", "Linux"]
 authors = [
   { name = "Ioannis Doganos", email = "i.doganos@tutamail.com" },
 ]
+
+[tool.setuptools.package-data]
+'src' = ['*.json']
+
 classifiers = [
   "Development Status :: 4 - Beta",
   "Operating System :: POSIX :: Linux",
