@@ -63,7 +63,6 @@ The UI is divided into two main panels:
 - **Right panel:** status, network information, and control panel.
 
 Press `s` to search dynamically through the available configuration files.  
-![Screen recording of the Search Option](./images/Searching.GIF)
 
 To connect to a VPN, select a file and press `Enter` (or click on it).
 
