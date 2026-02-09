@@ -10,7 +10,7 @@ __all__ = [
 
 __title__ = "pigeovpn"
 __summary__ = "A terminal user interface to dynamically select, connect, and monitor OpenVPN configurations on Linux."
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __author__ = "Ioannis-D"
 __email__ = "i.doganos@tutamail.com"
 __license__ = "GPL3"
