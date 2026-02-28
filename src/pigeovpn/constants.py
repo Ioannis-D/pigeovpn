@@ -8,6 +8,7 @@
 
 import os
 from pathlib import Path
+from importlib.resources import files
 import json
 
 from pigeovpn.__about__ import __title__, __url__
@@ -20,7 +21,7 @@ GITHUB_REPO = __url__
 # --------------------------------------------------------------
 # Directory and File Paths
 # --------------------------------------------------------------
-JSON_CONF = os.path.join(os.path.dirname(__file__), 'conf.json')
+JSON_CONF = files("pigeovpn").joinpath("conf.json")
 
 def get_real_home() -> Path:
     # If running with sudo, load the invoking user's home dir
