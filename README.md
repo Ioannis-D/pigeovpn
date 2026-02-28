@@ -162,7 +162,7 @@ Contributions are more than welcome! If you would like to collaborate, please ch
 
 ### Roadmap
 There are plenty of features I would like to include in the next versions. Some of them are:
-- [ ] Add directory path auto-completion using `Tab`.
+- [x] Add directory path auto-completion using `Tab`.
 - [ ] Implement an automatic killswitch.
 - [ ] Add more keybindings (e.g. for the buttons)
 - [ ] Use vim keybindings for directory tree navigation.
