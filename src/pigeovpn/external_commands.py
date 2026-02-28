@@ -8,11 +8,10 @@ import webbrowser
 from pathlib import Path
 import os
 import warnings
-import shlex
 
 from pigeovpn.constants import GITHUB_REPO, CREDS_FILE, COMMON_TERMINALS
 
-def execute_sudo_commands(sudo_command: str):
+def execute_sudo_commands(sudo_command: str | list[str]):
     """
     As the app has to do with OpenVPN connections, some of the commands have to run with sudo privileges. 
     Of course, storing the sudo password as plain text, or keep it in Python's memory is out of question.
@@ -21,13 +20,20 @@ def execute_sudo_commands(sudo_command: str):
     The user gives the sudo password to the new window (which can also handle incorrect passwords and ask the user to repeat it).
     One negative effect though is that the user has to give the sudo password every time, even if no time has passed. 
     """
+    if isinstance(sudo_command, str):
+        # Backward-compatible path for existing string commands.
+        # Wrapped through a shell to preserve previous behavior.
+        command_parts = ["sh", "-lc", sudo_command]
+    else:
+        command_parts = [str(arg) for arg in sudo_command]
+
     for terminal, flag in COMMON_TERMINALS.items():
         try:
             result = subprocess.Popen(
                 [
                 terminal,
                 flag,
-                sudo_command
+                *command_parts
                 ]
             )
         except Exception as e:
@@ -46,17 +52,15 @@ def connect_vpn(ovpn_file: str | Path):
     Returns True if the execution has been operated, but doesn't mean that the connection to the ovpn service has succeeded.
     Else, returns False
     """
-    ovpn_file = shlex.quote(str(ovpn_file))
-    creds_file = shlex.quote(CREDS_FILE)
-    sudo_command = ' '.join([
-            'sudo',
-            'openvpn',
-            '--config',
-            ovpn_file,
-            '--auth-user-pass',
-            creds_file,
-            '--daemon'
-            ])
+    sudo_command = [
+        "sudo",
+        "openvpn",
+        "--config",
+        str(ovpn_file),
+        "--auth-user-pass",
+        CREDS_FILE,
+        "--daemon",
+    ]
 
     return execute_sudo_commands(sudo_command)
 
@@ -65,11 +69,11 @@ def disconnect_vpn():
     Disconnect the OpenVPN.
     Kills all openvpn instances.
     """
-    sudo_command = ' '.join([
-            'sudo',
-            'killall', 
-            'openvpn'
-            ])
+    sudo_command = [
+        "sudo",
+        "killall",
+        "openvpn",
+    ]
     
     return execute_sudo_commands(sudo_command)
 
