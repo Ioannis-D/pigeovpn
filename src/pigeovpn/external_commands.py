@@ -8,6 +8,7 @@ import webbrowser
 from pathlib import Path
 import os
 import warnings
+import shlex
 
 from pigeovpn.constants import GITHUB_REPO, CREDS_FILE, COMMON_TERMINALS
 
@@ -45,14 +46,15 @@ def connect_vpn(ovpn_file: str | Path):
     Returns True if the execution has been operated, but doesn't mean that the connection to the ovpn service has succeeded.
     Else, returns False
     """
-    ovpn_file = str(ovpn_file)
+    ovpn_file = shlex.quote(str(ovpn_file))
+    creds_file = shlex.quote(CREDS_FILE)
     sudo_command = ' '.join([
             'sudo',
             'openvpn',
             '--config',
             ovpn_file,
             '--auth-user-pass',
-            CREDS_FILE,
+            creds_file,
             '--daemon'
             ])
 
